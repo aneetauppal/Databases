@@ -1,0 +1,13 @@
+all: remove_t remove_a get_genes remove_uniques remove_dash
+remove_t:
+	sed '/|t|/d' sjogrenalldiseases.txt > uno
+remove_a:
+	sed '/|a|/d' uno > sjrogrendiseaseswdup.txt
+change_upper:
+	tr ‘[a-z]’ ‘[A-Z]’ sjrogrendiseaseswdup.txt > sjrogrendiseaseswdup2.txt
+get_genes:
+	awk 'NF' sjrogrendiseaseswdup2.txt | cut -f 4,5 > genes 
+# 	cut -f 4 > genes #this just gets the gene names
+
+remove_uniques:
+	sort -u genes > final_all_diseasep1.txt
